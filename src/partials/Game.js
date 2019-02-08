@@ -6,8 +6,6 @@ import Board from './Board';
 import Paddle from './Paddle';
 import Ball from './Ball';
 
-
-
 export default class Game {
   constructor(element, width, height) {
     this.width = width;
@@ -22,7 +20,6 @@ export default class Game {
     this.radius = 8;
     this.boardWidth = 512;
     this.boardHeight = 256;
-
 
     this.board = new Board(this.width, this.height)
 
@@ -46,12 +43,23 @@ export default class Game {
     )
     this.ball = new Ball(
       this.radius,
-      this.boardWidth,
-      this.boardHeight,
+      this.width,
+      this.height,
     )
+    document.addEventListener('keydown', event => {
+      if (event.key === KEYS.spaceBar) {
+        this.pause = !this.pause;
+      }
+    })
+
   }
 
   render() {
+    //pause game
+    if (this.pause) {
+      return;
+    }
+
     //empty out game elements before re-rendering
     this.gameElement.innerHTML = '';
 
@@ -63,10 +71,10 @@ export default class Game {
     this.gameElement.appendChild(svg);
 
     //rendering all game elements inside the SVG
-    this.board.render(svg)
-    this.player1.render(svg)
-    this.player2.render(svg)
-    this.ball.render(svg)
+    this.board.render(svg);
+    this.player1.render(svg);
+    this.player2.render(svg);
+    this.ball.render(svg, this.player1, this.player2);
 
   }
 }
