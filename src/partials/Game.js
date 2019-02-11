@@ -50,7 +50,7 @@ export default class Game {
     );
 
     this.ball = new Ball(this.radius, this.width, this.height);
-    this.ball2 = new Ball(this.radius / 2, this.width, this.height,);
+    this.ball2 = new Ball(this.radius / 2, this.width, this.height, );
     this.score = new Score(this.x, this.y, this.size);
 
     document.addEventListener('keydown', event => {

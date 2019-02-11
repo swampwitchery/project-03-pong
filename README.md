@@ -21,3 +21,17 @@ This is a rendition of the retro two player Pong Game. Each paddle is controlled
 #### Stretch Goals
 
 Decided to work on a couple stretch goals for this project. I added in a smaller second ball, to add a bit of difficulty to the game. I was also able to display the winner of the game once a player reaches 10 points. The game ends, and then by pressing space bar, it allows you to restart the game.
+
+##### Setting up
+
+Install dependencies:
+
+- npm i
+
+Run locally with Webpack Dev Server:
+
+- npm start
+
+Build for production:
+
+- npm run build
