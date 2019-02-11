@@ -8,7 +8,6 @@ import Ball from './Ball';
 import Score from './Score';
 import Winner from './Winner'
 
-
 export default class Game {
   constructor(element, width, height) {
     this.width = width;
@@ -27,7 +26,7 @@ export default class Game {
     this.score2 = new Score(this.width / 2 + 25, 30, 30);
     this.board = new Board(this.width, this.height);
 
-    this.winner = new Winner (30, 100, 40);
+    this.winner = new Winner(this.width, this.height, 40);
 
     this.player1 = new Paddle(
       this.height,
@@ -47,7 +46,11 @@ export default class Game {
       KEYS.up,
       KEYS.down
     );
+
     this.ball = new Ball(this.radius, this.width, this.height);
+    this.ball2 = new Ball(this.radius, this.width, this.height);
+    this.ball3 = new Ball(this.radius, this.width, this.height);
+
     this.score = new Score(this.x, this.y, this.size);
 
     document.addEventListener('keydown', event => {
@@ -57,16 +60,16 @@ export default class Game {
     });
   }
 
+  winningPlayer(svg, player) {
+    this.winner.render(svg, `${player} Wins!!!`);
+    this.pause = true;
+  }
+
   render() {
     if (this.pause) {
       return;
     }
 
-    if (this.player1.score === 10 ) {
-			this.champion(svg, this.player1)
-		} else if (this.player2.score === 10) {
-			this.champion(svg, this.player2)
-		}
 
     this.gameElement.innerHTML = '';
 
@@ -83,5 +86,11 @@ export default class Game {
     this.ball.render(svg, this.player1, this.player2);
     this.score1.render(svg, this.player1.score);
     this.score2.render(svg, this.player2.score);
+
+    if (this.player1.score === 10) {
+      this.winningPlayer(svg, this.player1)
+    } else if (this.player2.score === 10) {
+      this.winningPlayer(svg, this.player2)
+    }
   }
 }

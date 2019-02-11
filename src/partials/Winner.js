@@ -8,13 +8,14 @@ export default class Winner {
         this.y = y;
         this.size = size;
     }
+
     
     render(svg, winner){
         let text = document.createElementNS(SVG_NS, 'text');
         text.setAttributeNS(null, 'x', this.x);
         text.setAttributeNS(null, 'y', this.y);        
         text.setAttributeNS(null, 'size', this.size);
-        text.setAttributeNS(null, 'fill', '#FFF');
+        text.setAttributeNS(null, 'fill', 'black');
         text.setAttributeNS(null, 'font-family', 'Silkscreen Web');
         text.textContent = winner;
 
