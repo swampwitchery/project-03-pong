@@ -80,17 +80,14 @@ export default class Ball {
     render(svg, player1, player2) {
         this.x += this.vx;
         this.y += this.vy;
-
         this.wallCollision();
         this.paddleCollision(player1, player2);
         let circle = document.createElementNS(SVG_NS, 'circle');
-
         circle.setAttributeNS(null, 'cx', this.x);
         circle.setAttributeNS(null, 'cy', this.y);
         circle.setAttributeNS(null, 'r', this.radius);
         circle.setAttributeNS(null, 'fill', '#FFF');
         svg.appendChild(circle);
-
         const rightGoal = this.x + this.radius >= this.boardWidth;
         const leftGoal = this.x - this.radius <= 0;
 

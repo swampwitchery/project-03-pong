@@ -12,12 +12,10 @@ export default class Game {
   constructor(element, width, height) {
     this.width = width;
     this.height = height;
-
     this.gameElement = document.getElementById(element);
     this.paddleWidth = 8;
     this.paddleHeight = 56;
     this.boardGap = 10;
-
     this.radius = 8;
     this.boardWidth = 512;
     this.boardHeight = 256;
@@ -25,11 +23,9 @@ export default class Game {
     this.player1name = 'playerOne';
     this.player2name = 'playerTwo';
 
-
     this.score1 = new Score(this.width / 2 - 50, 30, 30);
     this.score2 = new Score(this.width / 2 + 25, 30, 30);
     this.board = new Board(this.width, this.height);
-
     this.Winner = new Winner(this.width / 2 - 70, 100, 30);
 
     this.player1 = new Paddle(
@@ -54,8 +50,7 @@ export default class Game {
     );
 
     this.ball = new Ball(this.radius, this.width, this.height);
-    this.ball2 = new Ball(this.radius / 2, this.width, this.height);
-
+    this.ball2 = new Ball(this.radius / 2, this.width, this.height,);
     this.score = new Score(this.x, this.y, this.size);
 
     document.addEventListener('keydown', event => {
@@ -91,7 +86,6 @@ export default class Game {
 
     this.ball = new Ball(this.radius, this.width, this.height);
     this.ball2 = new Ball(this.radius / 2, this.width, this.height);
-
     this.score = new Score(this.x, this.y, this.size);
 
   }
@@ -102,14 +96,12 @@ export default class Game {
     }
 
     this.gameElement.innerHTML = '';
-
     let svg = document.createElementNS(SVG_NS, 'svg');
     svg.setAttributeNS(null, 'width', this.width);
     svg.setAttributeNS(null, 'height', this.height);
     svg.setAttributeNS(null, 'viewBox', `0 0 ${this.width} ${this.height}`);
     svg.setAttributeNS(null, 'version', '1.1');
     this.gameElement.appendChild(svg);
-
     this.board.render(svg);
     this.player1.render(svg);
     this.player2.render(svg);
