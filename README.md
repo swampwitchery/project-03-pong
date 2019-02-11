@@ -2,26 +2,18 @@
 
 A basic pong game using SVGs.
 
-## Setup
-
-**Install dependencies:**
-
-`> npm i`
-
-**Run locally with Webpack Dev Server:**
-
-`> npm start`
-
-**Build for production:**
-
-`> npm run build`
-
 ## Keys
 
 **Player 1:**
-* a: up
-* z: down
+
+- a: up
+- z: down
 
 **Player 2:**
-* ▲ : up
-* ▼: down
+
+- ▲ : up
+- ▼: down
+
+### Description
+
+This is a rendition of the retro two player Pong Game. Each paddle is controlled by a seperate player, first player to 10 wins the game. This was project 03 from RED Academy, as a code along - requirements were adding more vanilla Javascript/ES6 code to make it unique.
