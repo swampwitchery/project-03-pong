@@ -6,6 +6,8 @@ import Board from './Board';
 import Paddle from './Paddle';
 import Ball from './Ball';
 import Score from './Score';
+import Winner from './Winner'
+
 
 export default class Game {
   constructor(element, width, height) {
@@ -21,14 +23,11 @@ export default class Game {
     this.boardWidth = 512;
     this.boardHeight = 256;
 
-    //refactor below
-    this.score1 = new Score(this.width / 2 - 50, 30, 30)
-    this.score2 = new Score(this.width / 2 + 25, 30, 30)
+    this.score1 = new Score(this.width / 2 - 50, 30, 30);
+    this.score2 = new Score(this.width / 2 + 25, 30, 30);
+    this.board = new Board(this.width, this.height);
 
-    this.board = new Board(
-      this.width,
-      this.height
-    )
+    this.winner = new Winner (30, 100, 40);
 
     this.player1 = new Paddle(
       this.height,
@@ -38,7 +37,7 @@ export default class Game {
       (this.height - this.paddleHeight) / 2,
       KEYS.a,
       KEYS.z
-    )
+    );
     this.player2 = new Paddle(
       this.height,
       this.paddleWidth,
@@ -46,32 +45,28 @@ export default class Game {
       this.width - this.paddleWidth - this.boardGap,
       (this.height - this.paddleHeight) / 2,
       KEYS.up,
-      KEYS.down,
-    )
-    this.ball = new Ball(
-      this.radius,
-      this.width,
-      this.height,
-    )
-    this.score = new Score(
-      this.x,
-      this.y,
-      this.size,
-    )
+      KEYS.down
+    );
+    this.ball = new Ball(this.radius, this.width, this.height);
+    this.score = new Score(this.x, this.y, this.size);
 
     document.addEventListener('keydown', event => {
       if (event.key === KEYS.spaceBar) {
         this.pause = !this.pause;
       }
-    })
-
+    });
   }
 
   render() {
-    //pause game
     if (this.pause) {
       return;
     }
+
+    if (this.player1.score === 10 ) {
+			this.champion(svg, this.player1)
+		} else if (this.player2.score === 10) {
+			this.champion(svg, this.player2)
+		}
 
     this.gameElement.innerHTML = '';
 

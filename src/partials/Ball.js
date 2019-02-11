@@ -9,7 +9,6 @@ export default class Ball {
         this.boardHeight = boardHeight;
         this.direction = 1;
         this.ping = new Audio('public/sounds/pong-02.wav');
-
         this.reset();
     }
 
@@ -38,7 +37,6 @@ export default class Ball {
 
     paddleCollision(player1, player2) {
         if (this.vx > 0) {
-            //detect player 2 collision
             let paddle = player2.coordinates(player2.x, player2.y, player2.width, player2.height)
             let {
                 leftX,
@@ -92,7 +90,6 @@ export default class Ball {
         circle.setAttributeNS(null, 'fill', '#FFF');
         svg.appendChild(circle);
 
-        // Detect goal
         const rightGoal = this.x + this.radius >= this.boardWidth;
         const leftGoal = this.x - this.radius <= 0;
 
