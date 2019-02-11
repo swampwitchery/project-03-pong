@@ -8,8 +8,7 @@ export default class Winner {
         this.y = y;
         this.size = size;
     }
-
-
+    
     render(svg, winner) {
         let text = document.createElementNS(SVG_NS, 'text');
         text.setAttributeNS(null, 'x', this.x);
