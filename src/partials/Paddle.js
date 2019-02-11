@@ -3,7 +3,7 @@ import {
 } from '../settings';
 
 export default class Paddle {
-    constructor(boardHeight, width, height, x, y, upKey, downKey) {
+    constructor( boardHeight, width, height, x, y, upKey, downKey, playerName) {
         this.boardHeight = boardHeight;
         this.width = width;
         this.height = height;
@@ -11,6 +11,9 @@ export default class Paddle {
         this.y = y;
         this.speed = 10;
         this.score = 0;
+        this.playerName = playerName;
+
+    
 
         document.addEventListener('keydown', event => {
             switch (event.key) {

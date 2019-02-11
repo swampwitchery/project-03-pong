@@ -22,11 +22,15 @@ export default class Game {
     this.boardWidth = 512;
     this.boardHeight = 256;
 
+    this.player1name = 'playerOne';
+    this.player2name = 'playerTwo';
+
+
     this.score1 = new Score(this.width / 2 - 50, 30, 30);
     this.score2 = new Score(this.width / 2 + 25, 30, 30);
     this.board = new Board(this.width, this.height);
 
-    this.winner = new Winner(this.width, this.height, 40);
+    this.Winner = new Winner(this.width / 2 - 70, 100, 30);
 
     this.player1 = new Paddle(
       this.height,
@@ -35,7 +39,8 @@ export default class Game {
       this.boardGap,
       (this.height - this.paddleHeight) / 2,
       KEYS.a,
-      KEYS.z
+      KEYS.z,
+      this.player1name = 'player 1',
     );
     this.player2 = new Paddle(
       this.height,
@@ -44,12 +49,12 @@ export default class Game {
       this.width - this.paddleWidth - this.boardGap,
       (this.height - this.paddleHeight) / 2,
       KEYS.up,
-      KEYS.down
+      KEYS.down,
+      this.player2name = 'player 2',
     );
 
     this.ball = new Ball(this.radius, this.width, this.height);
-    this.ball2 = new Ball(this.radius, this.width, this.height);
-    this.ball3 = new Ball(this.radius, this.width, this.height);
+    this.ball2 = new Ball(this.radius / 2, this.width, this.height);
 
     this.score = new Score(this.x, this.y, this.size);
 
@@ -61,15 +66,40 @@ export default class Game {
   }
 
   winningPlayer(svg, player) {
-    this.winner.render(svg, `${player} Wins!!!`);
+    this.Winner.render(svg, `${player} Wins!`);
     this.pause = true;
+    this.player1 = new Paddle(
+      this.height,
+      this.paddleWidth,
+      this.paddleHeight,
+      this.boardGap,
+      (this.height - this.paddleHeight) / 2,
+      KEYS.a,
+      KEYS.z,
+      this.player1name = 'player 1',
+    );
+    this.player2 = new Paddle(
+      this.height,
+      this.paddleWidth,
+      this.paddleHeight,
+      this.width - this.paddleWidth - this.boardGap,
+      (this.height - this.paddleHeight) / 2,
+      KEYS.up,
+      KEYS.down,
+      this.player2name = 'player 2',
+    );
+
+    this.ball = new Ball(this.radius, this.width, this.height);
+    this.ball2 = new Ball(this.radius / 2, this.width, this.height);
+
+    this.score = new Score(this.x, this.y, this.size);
+
   }
 
   render() {
     if (this.pause) {
       return;
     }
-
 
     this.gameElement.innerHTML = '';
 
@@ -87,10 +117,10 @@ export default class Game {
     this.score1.render(svg, this.player1.score);
     this.score2.render(svg, this.player2.score);
 
-    if (this.player1.score === 10) {
-      this.winningPlayer(svg, this.player1)
-    } else if (this.player2.score === 10) {
-      this.winningPlayer(svg, this.player2)
+    if (this.player1.score === 1) {
+      this.winningPlayer(svg, this.player1.playerName)
+    } else if (this.player2.score === 1) {
+      this.winningPlayer(svg, this.player2.playerName)
     }
   }
 }
